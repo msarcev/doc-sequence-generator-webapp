@@ -1,0 +1,71 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+footer {
+    margin-top: -30px;
+}
+
+.main-title{
+    font-size:50px;
+    margin: 180px 0px 90px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.input-sm{
+    width: 350px;
+    margin: 10px auto;
+}
+
+.form-actions{
+    width: 150px;
+    margin: 90px auto 0px;
+}
+
+.nav.navbar-nav {
+    float: right!important;
+}
+
+input.btn.btn-block.btn-primary.btn-default{
+    margin: 12px 0 0 50px;
+}
+
+/*****************************************************MEDIA****************************************************************************/
+
+/* Large desktop - >1350*/
+@media (min-width: 1350px) {
+
+}
+
+/* Medium Desktop - 980	-------	1349*/
+@media (min-width: 980px) and (max-width: 1349px) {
+
+}
+
+/* Custom 980px ------- 1200px */
+@media (min-width: 980px) and (max-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+/*  768px ------- 979px */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+/* Small Screen <768*/
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones and down */
+/* Xtra Small <480*/
+@media (max-width: 480px) {
+
+}
+
+/*END:MEDIA*/
