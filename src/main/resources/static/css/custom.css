@@ -33,6 +33,26 @@ input.btn.btn-block.btn-primary.btn-default{
     margin: 12px 0 0 50px;
 }
 
+#claim-new{
+    width: 150px;
+}
+
+#input-filter-textbox{
+    width: 250px;
+    float: left;
+    height: 32px;
+}
+
+#input-filter-btn{
+    width: 150px;
+    float: left;
+    height: 100%;
+}
+
+#top-row{
+    margin-bottom: 40px;
+}
+
 /*****************************************************MEDIA****************************************************************************/
 
 /* Large desktop - >1350*/
