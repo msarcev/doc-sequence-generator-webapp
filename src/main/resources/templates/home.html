@@ -31,7 +31,7 @@
             </div>
             <div id="top-row" class="row">
                 <div class="col-md-6">
-                <button id="claim-new" class="btn btn-block" type="button">Claim new</button>
+                    <a th:href="@{'/input'}" id="claim-new" class="btn btn-default" type="button" >Claim new</a>
                 </div>
                 <div id="filter-search" class="col-md-6">
                     <input id="input-filter-textbox" type="search" maxlength="30" value=""/>
@@ -47,7 +47,7 @@
                         <th>Date</th>
                     </tr>
                     <tr th:each="entry : ${entries}">
-                        <td th:text="${entry.id}"></td>
+                        <td ><a th:text="${entry.id}" th:href="@{/details}"></a></td>
                         <td th:text="${entry.author}"></td>
                         <td th:text="${entry.purpose}"></td>
                         <td th:text="${entry.time}"></td>

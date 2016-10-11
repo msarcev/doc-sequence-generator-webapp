@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../static/css/custom.css" th:href="@{/css/custom.css}" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="screen"/>
+    <title>Doc Seq Gen</title>
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav_btn"><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
+                    <li class="nav_btn"><form th:action="@{/logout}" method="post">
+                        <input class="btn btn-block btn-primary btn-default" type="submit" value="Logout"/></form></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-title">Document Details</div>
+        <div class="row">
+            <div class="col-lg-4">Sequence</div><div class="col-md-8">00012</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">Author</div><div class="col-md-8">admin</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">Purpose</div><div class="col-md-8">TESTTEST</div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">Date</div><div class="col-md-8">12.12.12</div>
+        </div>
+        <div class="row">
+            <a th:href="@{'/'}" id="claim-new" class="btn btn-default" type="button" >Ok</a>
+        </div>
+
+    </div>
+</body>
+</html>
