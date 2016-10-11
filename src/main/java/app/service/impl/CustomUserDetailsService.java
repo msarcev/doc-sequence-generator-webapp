@@ -1,7 +1,8 @@
-package app.service;
+package app.service.impl;
 
 import app.model.User;
 import app.model.UserProfile;
+import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -19,7 +20,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
-
 
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String ssoId)
