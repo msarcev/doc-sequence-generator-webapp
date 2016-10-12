@@ -41,7 +41,7 @@ public class DatabaseInitializer {
         usersService.saveUser(thirdPerson);
         usersService.saveUser(fourthPerson);
 
-        sequenceService.save(Arrays.asList(defaultSeq1,defaultSeq2,defaultSeq3));
+        sequenceService.saveSequences(Arrays.asList(defaultSeq1,defaultSeq2,defaultSeq3));
 
     }
 

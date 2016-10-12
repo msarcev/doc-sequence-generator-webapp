@@ -53,6 +53,11 @@
                         <td th:text="${entry.dateTime}"></td>
                     </tr>
                 </table>
+                <ul class="pagination">
+                    <label id="page-info" th:text="${pageinfo}"></label>
+                    <li><a th:href="@{/(page=${currentPage}-1)}">❮</a></li>
+                    <li><a th:href="@{/(page=${currentPage}+1)}">❯</a></li>
+                </ul>
             </div>
         </div>
     </body>

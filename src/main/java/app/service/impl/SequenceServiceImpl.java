@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.LinkedList;
+import java.util.List;
+
 @Service("sequenceService")
 @Transactional
 public class SequenceServiceImpl implements SequenceService{
@@ -26,8 +29,20 @@ public class SequenceServiceImpl implements SequenceService{
 
     @Transactional
     @Override
-    public Iterable<Sequence> save(Iterable<Sequence> sequence) {
+    public Iterable<Sequence> saveSequences(Iterable<Sequence> sequence) {
         return sequenceRepository.save(sequence);
+    }
+
+    @Override
+    public Sequence getLastSequence() {
+        Iterable<Sequence> allSequences = sequenceRepository.findAll();
+        List<Sequence> list = new LinkedList<>();
+
+        for (Sequence sequence : allSequences){
+            list.add(sequence);
+        }
+
+        return list.get(list.size()-1);
     }
 
 }

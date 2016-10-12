@@ -5,6 +5,8 @@ import app.service.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -14,17 +16,33 @@ import java.util.Date;
 @RestController
 public class CustomController {
 
+    private static int currentPage = 1;
+
     @Autowired
     SequenceService sequenceService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView showHomePage() {
+    public ModelAndView showHomePage(@RequestParam(value = "page", required = false) Integer pageNum) {
 
         ModelAndView modelAndView = new ModelAndView();
+        int evalPage;
 
-        Page<Sequence> dummyEntries = sequenceService.findAllPageable(new PageRequest(0,5));
+        Page<Sequence> page = sequenceService.findAllPageable(new PageRequest(0,5));
 
-        modelAndView.addObject("entries", dummyEntries.getContent());
+        if (pageNum != null && pageNum > page.getTotalPages()){
+            evalPage = currentPage - 1;
+        } else {
+            evalPage = (pageNum == null || pageNum < 1) ? currentPage - 1 : pageNum - 1;
+        }
+
+        page = sequenceService.findAllPageable(new PageRequest(evalPage,5));
+
+        currentPage = page.getNumber() + 1;
+        String pageInfo = "Page " + currentPage + "/" + page.getTotalPages();
+
+        modelAndView.addObject("entries", page.getContent());
+        modelAndView.addObject("pageinfo", pageInfo);
+        modelAndView.addObject("currentPage", page.getNumber() + 1);
         modelAndView.setViewName("home");
 
         return modelAndView;
@@ -45,7 +63,7 @@ public class CustomController {
     public ModelAndView claimNewSequence(@ModelAttribute Sequence sequence) {
 
         sequence.setDateTime(String.valueOf(new Date().getTime()));
-        sequenceService.save(Arrays.asList(sequence));
+        sequenceService.saveSequences(Arrays.asList(sequence));
         ModelAndView modelAndView = new ModelAndView("redirect:/");
 
         return modelAndView;
@@ -56,7 +74,10 @@ public class CustomController {
     public ModelAndView input() {
 
         ModelAndView modelAndView = new ModelAndView();
-        Sequence sequence = new Sequence();
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Sequence sequence = new Sequence(auth.getName(),null,null);
+        sequence.setId(sequenceService.getLastSequence().getId()+1);
         modelAndView.addObject("sequence", sequence);
         modelAndView.setViewName("input");
 

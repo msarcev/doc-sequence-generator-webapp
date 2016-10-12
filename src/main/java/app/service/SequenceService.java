@@ -8,6 +8,7 @@ public interface SequenceService {
 
     Page<Sequence> findAllPageable(Pageable pageable);
 
-    Iterable<Sequence> save(Iterable<Sequence> persons);
+    Iterable<Sequence> saveSequences(Iterable<Sequence> persons);
 
+    Sequence getLastSequence();
 }
