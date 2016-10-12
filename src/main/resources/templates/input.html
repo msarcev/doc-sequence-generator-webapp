@@ -27,12 +27,27 @@
 </div>
 
 <div class="container">
-    <title class="main-title">Document Details</title>
+    <div class="main-title">Claim new Sequence</div>
     <div id="top-row" class="row">
-
+        <div class="alert alert-danger" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div>Sequence is</div>
+        <div>By user</div>
+        <div>Purpose</div>
+    </div>
+    <div class="col-md-8">
+        <ul>
+            <li><input id="input-sequence-textbox" type="search" maxlength="30" value=""/></li>
+            <li><input id="input-author-textbox" type="search" maxlength="30" value=""/></li>
+            <li><input id="input-purpose-textbox" type="search" maxlength="30" value=""/></li>
+        </ul>
     </div>
     <div class="row">
-
+        <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
+        <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="button" >Claim!</a></div>
     </div>
 </div>
 </body>
