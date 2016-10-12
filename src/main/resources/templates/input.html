@@ -33,22 +33,24 @@
             Invalid username and password.
         </div>
     </div>
-    <div class="col-md-4">
-        <div>Sequence is</div>
-        <div>By user</div>
-        <div>Purpose</div>
-    </div>
-    <div class="col-md-8">
-        <ul>
-            <li><input id="input-sequence-textbox" type="search" maxlength="30" value=""/></li>
-            <li><input id="input-author-textbox" type="search" maxlength="30" value=""/></li>
-            <li><input id="input-purpose-textbox" type="search" maxlength="30" value=""/></li>
-        </ul>
-    </div>
-    <div class="row">
-        <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
-        <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="button" >Claim!</a></div>
-    </div>
+    <form class="form-inline" th:action="@{/input}" th:object="${sequence}" method="post">
+        <div class="col-md-4">
+            <div>Sequence is</div>
+            <div>By user</div>
+            <div>Purpose</div>
+        </div>
+        <div class="col-md-8">
+            <ul>
+                <li><input class="form-control" id="input-sequence-textbox" th:field="*{id}" type="text" maxlength="30" name="sequence"/></li>
+                <li><input class="form-control" id="input-author-textbox" th:field="*{author}" type="text" maxlength="30" name="author"/></li>
+                <li><input class="form-control" id="input-purpose-textbox" th:field="*{purpose}" type="text" maxlength="30" name="purpose"/></li>
+            </ul>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
+            <div class="col-md-6"><input th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="submit" value="Claim!" ></input></div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
