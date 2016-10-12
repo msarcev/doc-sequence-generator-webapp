@@ -22,7 +22,19 @@ public class CustomController {
     SequenceService sequenceService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView showHomePage(@RequestParam(value = "page", required = false) Integer pageNum) {
+    public ModelAndView showHomePage(@RequestParam(value = "page", required = false) Integer pageNum,
+                                     @RequestParam(value = "filter", required = false) String filter) {
+
+        if (filter != null && filter.length() > 2){
+            Sequence seq = sequenceService.filterSequence(filter);
+            if (seq != null){
+                ModelAndView modelAndView = new ModelAndView();
+                modelAndView.addObject("sequence", seq);
+                modelAndView.setViewName("details");
+
+                return modelAndView;
+            }
+        }
 
         ModelAndView modelAndView = new ModelAndView();
         int evalPage;

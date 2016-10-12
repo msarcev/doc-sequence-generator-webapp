@@ -13,4 +13,6 @@ public interface SequenceService {
     Sequence findById(int id);
 
     Sequence getLastSequence();
+
+    Sequence filterSequence(String filter);
 }

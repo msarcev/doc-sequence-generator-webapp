@@ -34,8 +34,8 @@
                     <a th:href="@{'/input'}" id="claim-new" class="btn btn-default" type="button" >Claim new</a>
                 </div>
                 <div id="filter-search" class="col-md-6">
-                    <input id="input-filter-textbox" type="search" maxlength="30" value=""/>
-                    <input id="input-filter-btn" class="btn btn-block" type="submit" value="submit"/>
+                    <input id="input-filter-textbox" onsubmit="" type="search" maxlength="30" value=""/>
+                    <a class="btn btn-default" href='' onclick="this.href='/?filter='+document.getElementById('input-filter-textbox').value">Go!</a>
                 </div>
             </div>
             <div class="row">

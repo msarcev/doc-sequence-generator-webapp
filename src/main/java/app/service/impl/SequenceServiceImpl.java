@@ -40,6 +40,28 @@ public class SequenceServiceImpl implements SequenceService{
 
     @Override
     public Sequence getLastSequence() {
+        List<Sequence> list = getAll();
+        return list.get(list.size()-1);
+    }
+
+    @Override
+    public Sequence filterSequence(String filter) {
+
+        List<Sequence> all = getAll();
+
+        Sequence toReturn = null;
+
+        for (Sequence sequence : all){
+            if(sequence.getPurpose().contains(filter)){
+                toReturn = sequence;
+            }
+        }
+
+        return toReturn;
+    }
+
+    private List<Sequence> getAll(){
+
         Iterable<Sequence> allSequences = sequenceRepository.findAll();
         List<Sequence> list = new LinkedList<>();
 
@@ -47,7 +69,7 @@ public class SequenceServiceImpl implements SequenceService{
             list.add(sequence);
         }
 
-        return list.get(list.size()-1);
+        return list;
     }
 
 }
