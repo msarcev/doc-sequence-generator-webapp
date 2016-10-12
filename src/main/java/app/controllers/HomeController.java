@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @RestController
 public class HomeController {
 
@@ -38,6 +40,7 @@ public class HomeController {
         }
 
         page = sequenceService.findAllPageable(new PageRequest(evalPage,5));
+        formatSequences(page.getContent());
 
         currentPage = page.getNumber() + 1;
         String pageInfo = "Page " + currentPage + "/" + page.getTotalPages();
@@ -51,10 +54,17 @@ public class HomeController {
 
     }
 
+    private void formatSequences(List<Sequence> content) {
+        for (Sequence sequence : content){
+            sequence.setFormattedsequence();
+        }
+    }
+
     private ModelAndView tryResolveFilter(@RequestParam(value = "filter", required = false) String filter) {
         if (filter != null && filter.length() > 2){
             Sequence seq = sequenceService.filterSequence(filter);
             if (seq != null){
+                seq.setFormattedsequence();
                 ModelAndView modelAndView = new ModelAndView();
                 modelAndView.addObject("sequence", seq);
                 modelAndView.setViewName("details");

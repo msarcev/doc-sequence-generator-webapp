@@ -19,6 +19,7 @@ public class DetailsController {
     public ModelAndView details(@RequestParam(value = "id", required = true) Integer id) {
 
         Sequence seq = sequenceService.findById(id);
+        seq.setFormattedsequence();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sequence", seq);

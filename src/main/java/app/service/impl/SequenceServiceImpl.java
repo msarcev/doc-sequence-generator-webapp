@@ -60,7 +60,8 @@ public class SequenceServiceImpl implements SequenceService{
         return toReturn;
     }
 
-    private List<Sequence> getAll(){
+    @Override
+    public List<Sequence> getAll(){
 
         Iterable<Sequence> allSequences = sequenceRepository.findAll();
         List<Sequence> list = new LinkedList<>();

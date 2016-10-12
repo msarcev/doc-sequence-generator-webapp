@@ -19,13 +19,14 @@ public class Sequence {
     @Column(name = "DATE", unique = false, nullable = false)
     private String dateTime;
 
+    private String formattedsequence;
+
     public Sequence(){}
 
     public Sequence(String author, String purpose, String dateTime){
         this.author = author;
         this.purpose = purpose;
         this.dateTime = dateTime;
-
     }
 
     public int getId() {
@@ -34,6 +35,17 @@ public class Sequence {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFormattedsequence() {
+        return formattedsequence;
+    }
+
+    public void setFormattedsequence() {
+
+        String formattedNumber = String.format("%05d", getId());
+
+        this.formattedsequence = formattedNumber;
     }
 
     public String getAuthor() {
@@ -63,4 +75,6 @@ public class Sequence {
     @Override
     public String toString() {
         return "Sequence [id=" + id + ", author=" + author + ", purpose=" + purpose + ", date=" + dateTime;    }
+
+
 }
