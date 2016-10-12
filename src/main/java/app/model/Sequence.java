@@ -19,6 +19,8 @@ public class Sequence {
     @Column(name = "DATE", unique = false, nullable = false)
     private String dateTime;
 
+    public Sequence(){}
+
     public Sequence(String author, String purpose, String dateTime){
         this.author = author;
         this.purpose = purpose;

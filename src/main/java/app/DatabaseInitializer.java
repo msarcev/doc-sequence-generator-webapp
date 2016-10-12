@@ -33,8 +33,8 @@ public class DatabaseInitializer {
         User fourthPerson = new User("user_4", "password", "Sime", "Simic", "name3@domain.com");
 
         Sequence defaultSeq1 = new Sequence("system", "Test1", String.valueOf(new Date().getTime()));
-        Sequence defaultSeq2 = new Sequence("sysem", "Test1", String.valueOf(new Date().getTime()));
-        Sequence defaultSeq3 = new Sequence("sysem", "Test1", String.valueOf(new Date().getTime()));
+        Sequence defaultSeq2 = new Sequence("system", "Test2", String.valueOf(new Date().getTime()));
+        Sequence defaultSeq3 = new Sequence("system", "Test3", String.valueOf(new Date().getTime()));
 
         usersService.saveUser(firstPerson);
         usersService.saveUser(secondPerson);
