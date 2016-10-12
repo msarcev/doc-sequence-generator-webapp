@@ -29,16 +29,16 @@
     <div class="container">
         <div class="main-title">Document Details</div>
         <div class="row">
-            <div class="col-lg-4">Sequence</div><div class="col-md-8">00012</div>
+            <div class="col-lg-4">Sequence</div><div class="col-md-8" th:text="${sequence.id}">default</div>
         </div>
         <div class="row">
-            <div class="col-lg-4">Author</div><div class="col-md-8">admin</div>
+            <div class="col-lg-4">Author</div><div class="col-md-8" th:text="${sequence.author}">default</div>
         </div>
         <div class="row">
-            <div class="col-lg-4">Purpose</div><div class="col-md-8">TESTTEST</div>
+            <div class="col-lg-4">Purpose</div><div class="col-md-8" th:text="${sequence.purpose}">default</div>
         </div>
         <div class="row">
-            <div class="col-lg-4">Date</div><div class="col-md-8">12.12.12</div>
+            <div class="col-lg-4">Date</div><div class="col-md-8" th:text="${sequence.dateTime}">default</div>
         </div>
         <div class="row">
             <a th:href="@{'/'}" id="claim-new" class="btn btn-default" type="button" >Ok</a>

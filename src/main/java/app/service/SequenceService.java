@@ -10,5 +10,7 @@ public interface SequenceService {
 
     Iterable<Sequence> saveSequences(Iterable<Sequence> persons);
 
+    Sequence findById(int id);
+
     Sequence getLastSequence();
 }

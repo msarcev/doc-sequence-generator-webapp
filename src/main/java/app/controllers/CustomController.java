@@ -50,9 +50,12 @@ public class CustomController {
     }
 
     @RequestMapping(value = "/details", method = RequestMethod.GET)
-    public ModelAndView details() {
+    public ModelAndView details(@RequestParam(value = "id", required = true) Integer id) {
+
+        Sequence seq = sequenceService.findById(id);
 
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("sequence", seq);
         modelAndView.setViewName("details");
 
         return modelAndView;

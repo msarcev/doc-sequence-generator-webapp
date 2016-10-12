@@ -34,6 +34,11 @@ public class SequenceServiceImpl implements SequenceService{
     }
 
     @Override
+    public Sequence findById(int id) {
+        return sequenceRepository.findOne(id);
+    }
+
+    @Override
     public Sequence getLastSequence() {
         Iterable<Sequence> allSequences = sequenceRepository.findAll();
         List<Sequence> list = new LinkedList<>();
