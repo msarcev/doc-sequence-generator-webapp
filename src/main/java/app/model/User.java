@@ -33,6 +33,16 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
     private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
+    public User(){}
+
+    public User(String ssoId, String password, String firstName, String lastName, String email){
+        this.ssoId = ssoId;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }

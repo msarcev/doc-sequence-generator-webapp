@@ -18,4 +18,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         return (User) crit.uniqueResult();
     }
 
+    @Override
+    public void saveUser(User user) {
+        this.persist(user);
+    }
+
 }

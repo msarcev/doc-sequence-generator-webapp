@@ -21,5 +21,9 @@ public class UserServiceImpl implements UserService {
     public User findBySso(String sso) {
         return dao.findBySSO(sso);
     }
+
+    public void saveUser(User user){
+        dao.saveUser(user);
+    }
  
 }
