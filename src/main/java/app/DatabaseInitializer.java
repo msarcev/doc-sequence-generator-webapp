@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -31,21 +32,25 @@ public class DatabaseInitializer {
     @PostConstruct
     public void populateDatabase() {
 
-        User firstPerson = new User("user_1", bcryptEncoder.encode("password"), "Mate", "Matic", "name1@domain.com");
-        User secondPerson = new User("user_2", bcryptEncoder.encode("password"), "Ante", "Antic", "name2@domain.com");
-        User thirdPerson = new User("user_3", bcryptEncoder.encode("password"), "Pero", "Peric", "name3@domain.com");
-        User fourthPerson = new User("user_4", bcryptEncoder.encode("password"), "Sime", "Simic", "name3@domain.com");
+        User firstPerson = new User("user1", bcryptEncoder.encode("password"), "Mate", "Matic", "name1@domain.com");
+        User secondPerson = new User("user2", bcryptEncoder.encode("password"), "Ante", "Antic", "name2@domain.com");
+        User thirdPerson = new User("user3", bcryptEncoder.encode("password"), "Pero", "Peric", "name3@domain.com");
+        User fourthPerson = new User("user4", bcryptEncoder.encode("password"), "Sime", "Simic", "name3@domain.com");
 
-        Sequence defaultSeq1 = new Sequence("system", "Test1", String.valueOf(new Date().getTime()));
-        Sequence defaultSeq2 = new Sequence("system", "Test2", String.valueOf(new Date().getTime()));
-        Sequence defaultSeq3 = new Sequence("system", "Test3", String.valueOf(new Date().getTime()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String date = sdf.format(new Date().getTime());
+
+        Sequence defaultSeq1 = new Sequence("system", "Test1", date);
+        Sequence defaultSeq2 = new Sequence("system", "Test2", date);
+        Sequence defaultSeq3 = new Sequence("system", "Test3", date);
+        Sequence defaultSeq4 = new Sequence("system", "Test3", date);
 
         usersService.saveUser(firstPerson);
         usersService.saveUser(secondPerson);
         usersService.saveUser(thirdPerson);
         usersService.saveUser(fourthPerson);
 
-        sequenceService.saveSequences(Arrays.asList(defaultSeq1,defaultSeq2,defaultSeq3));
+        sequenceService.saveSequences(Arrays.asList(defaultSeq1,defaultSeq2,defaultSeq3,defaultSeq4));
 
     }
 

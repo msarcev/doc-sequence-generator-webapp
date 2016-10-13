@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -20,8 +21,13 @@ public class InputController {
     @PostMapping("/input")
     public ModelAndView claimNewSequence(@ModelAttribute Sequence sequence) {
 
-        sequence.setDateTime(String.valueOf(new Date().getTime()));
-        sequenceService.saveSequences(Arrays.asList(sequence));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        String date = sdf.format(new Date().getTime());
+        sequence.setDateTime(date);
+
+        if (!sequence.getPurpose().equals("")) {
+            sequenceService.saveSequences(Arrays.asList(sequence));
+        }
         ModelAndView modelAndView = new ModelAndView("redirect:/");
 
         return modelAndView;
