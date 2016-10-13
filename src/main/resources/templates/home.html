@@ -34,8 +34,10 @@
                     <a th:href="@{'/input'}" id="claim-new" class="btn btn-default" type="button" >Claim new</a>
                 </div>
                 <div id="filter-search" class="col-md-6">
-                    <input id="input-filter-textbox" onsubmit="" type="search" maxlength="30" value=""/>
-                    <a class="btn btn-default" href='' onclick="this.href='/?filter='+document.getElementById('input-filter-textbox').value">Go!</a>
+                    <div class="col-md-8">
+                    <input id="input-filter-textbox" onsubmit="" type="search" maxlength="30" value=""/></div>
+                    <div class="col-md-4">
+                    <a id="input-filter-btn" class="btn btn-default" href='' onclick="this.href='/?filter='+document.getElementById('input-filter-textbox').value">Go!</a></div>
                 </div>
             </div>
             <div class="row">
@@ -53,11 +55,14 @@
                         <td th:text="${entry.dateTime}"></td>
                     </tr>
                 </table>
-                <ul class="pagination">
+
+                <div class="pagination">
                     <label id="page-info" th:text="${pageinfo}"></label>
-                    <li><a th:href="@{/(page=${currentPage}-1)}">❮</a></li>
-                    <li><a th:href="@{/(page=${currentPage}+1)}">❯</a></li>
-                </ul>
+                    <ul class="pagination">
+                        <li><a th:href="@{/(page=${currentPage}-1)}">❮</a></li>
+                        <li><a th:href="@{/(page=${currentPage}+1)}">❯</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </body>

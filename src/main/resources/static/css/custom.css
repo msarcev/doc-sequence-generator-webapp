@@ -2,10 +2,15 @@ html, body {
     height: 100%;
     width: 100%;
     background-color: black;
+    font-size: 15pt;
 }
 
 footer {
     margin-top: -30px;
+}
+
+ul{
+    list-style: none;
 }
 
 .main-title{
@@ -33,24 +38,69 @@ input.btn.btn-block.btn-primary.btn-default{
     margin: 12px 0 0 50px;
 }
 
+#details-labels li div{
+    font-size: 15pt;
+    margin-right: 30px;
+}
+
+#details-values{
+    width: 100%;
+}
+
+#details-values li input{
+    font-size: 15pt;
+    width: 200px;
+}
+
+#details-values li div{
+    font-size: 15pt;
+    width: 200px;
+}
+
+#ok-btn{
+    margin-top: 40px;
+}
+
+.form-inline{
+    alignment: center;
+}
+
 #claim-new{
     width: 150px;
 }
 
+#claim-new-claim-btn{
+    float: right;
+}
+
+#input-controls{
+    margin-top: 65px;
+}
+
 #input-filter-textbox{
     width: 250px;
-    float: left;
+    float: right;
     height: 32px;
 }
 
 #input-filter-btn{
     width: 150px;
-    float: left;
+    float: right;
     height: 100%;
 }
 
 #top-row{
     margin-bottom: 40px;
+}
+
+.pagination{
+    float: right;
+}
+
+#page-info{
+    margin-right: 25px;
+    margin-top: 25px;
+    font-size: 15pt;
 }
 
 /*****************************************************MEDIA****************************************************************************/

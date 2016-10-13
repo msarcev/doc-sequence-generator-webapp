@@ -29,19 +29,25 @@
     <div class="container">
         <div class="main-title">Document Details</div>
         <div class="row">
-            <div class="col-lg-4">Sequence</div><div class="col-md-8" th:text="${sequence.formattedsequence}">default</div>
+            <div class="col-md-6 ">
+                <ul id="details-labels" class="pull-right">
+                    <li><div>Sequence</div></li>
+                    <li><div>Author</div></li>
+                    <li><div>Purpose</div></li>
+                    <li><div>Date</div></li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul id="details-values" class="pull-left">
+                    <li><div th:text="${sequence.formattedsequence}">default</div></li>
+                    <li><div th:text="${sequence.author}">default</div></li>
+                    <li><div th:text="${sequence.purpose}">default</div></li>
+                    <li><div th:text="${sequence.dateTime}">default</div></li>
+                </ul>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4">Author</div><div class="col-md-8" th:text="${sequence.author}">default</div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">Purpose</div><div class="col-md-8" th:text="${sequence.purpose}">default</div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">Date</div><div class="col-md-8" th:text="${sequence.dateTime}">default</div>
-        </div>
-        <div class="row">
-            <a th:href="@{'/'}" id="claim-new" class="btn btn-default" type="button" >Ok</a>
+        <div id="ok-btn">
+            <a th:href="@{'/'}" id="claim-new" class="btn btn-default center-block" type="button" >Ok</a>
         </div>
 
     </div>

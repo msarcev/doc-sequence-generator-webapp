@@ -34,21 +34,25 @@
         </div>
     </div>
     <form class="form-inline" th:action="@{/input}" th:object="${sequence}" method="post">
-        <div class="col-md-4">
-            <div>Sequence is</div>
-            <div>By user</div>
-            <div>Purpose</div>
+        <div class="row">
+        <div class="col-md-6 ">
+            <ul id="details-labels" class="pull-right">
+                <li><div>Sequence is</div></li>
+                <li><div>By user</div></li>
+                <li><div>Purpose</div></li>
+            </ul>
         </div>
-        <div class="col-md-8">
-            <ul>
+        <div class="col-md-6">
+            <ul id="details-values" class="pull-left">
                 <li><input class="form-control" id="input-sequence-textbox" th:field="*{formattedsequence}" type="text" maxlength="30" name="sequence" readonly="readonly" /></li>
                 <li><input class="form-control" id="input-author-textbox" th:field="*{author}" type="text" maxlength="30" name="author" readonly="readonly" /></li>
                 <li><input class="form-control" id="input-purpose-textbox" th:field="*{purpose}" type="text" maxlength="30" name="purpose"/></li>
             </ul>
         </div>
-        <div class="row">
-            <div class="col-md-6"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
-            <div class="col-md-6"><input th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="submit" value="Claim!" ></input></div>
+        </div>
+        <div id="input-controls" class="row">
+            <div class="col-md-6 pull-right"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
+            <div class="col-md-6 pull-right"><input th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="submit" value="Claim!" /></div>
         </div>
     </form>
 </div>
