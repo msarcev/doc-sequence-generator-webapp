@@ -4,6 +4,7 @@ import app.model.Sequence;
 import app.model.User;
 import app.service.SequenceService;
 import app.service.UserService;
+import app.service.impl.PassEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ import java.util.Date;
 public class DatabaseInitializer {
 
     @Autowired
-    BCryptPasswordEncoder bcryptEncoder;
+    PassEncoder passEncoder;
 
     private UserService usersService;
 
@@ -32,10 +33,10 @@ public class DatabaseInitializer {
     @PostConstruct
     public void populateDatabase() {
 
-        User firstPerson = new User("user1", bcryptEncoder.encode("password"), "Mate", "Matic", "name1@domain.com");
-        User secondPerson = new User("user2", bcryptEncoder.encode("password"), "Ante", "Antic", "name2@domain.com");
-        User thirdPerson = new User("user3", bcryptEncoder.encode("password"), "Pero", "Peric", "name3@domain.com");
-        User fourthPerson = new User("user4", bcryptEncoder.encode("password"), "Sime", "Simic", "name3@domain.com");
+        User firstPerson = new User("user1", passEncoder.encode("password"), "Mate", "Matic", "name1@domain.com");
+        User secondPerson = new User("user2", passEncoder.encode("password"), "Ante", "Antic", "name2@domain.com");
+        User thirdPerson = new User("user3", passEncoder.encode("password"), "Pero", "Peric", "name3@domain.com");
+        User fourthPerson = new User("user4", passEncoder.encode("password"), "Sime", "Simic", "name3@domain.com");
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         String date = sdf.format(new Date().getTime());
