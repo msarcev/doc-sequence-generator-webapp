@@ -10,12 +10,20 @@ footer {
 }
 
 ul{
+    display: inline;
     list-style: none;
 }
 
 .main-title{
     font-size:50px;
     margin: 80px 0px 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.main-title-claim{
+    font-size:50px;
+    margin: 190px 0px 40px;
     letter-spacing: 2px;
     text-align: center;
 }
@@ -53,6 +61,7 @@ input.btn.btn-block.btn-primary.btn-default{
 
 #details-values{
     width: 100%;
+    text-align:center;
 }
 
 #details-values li input{
@@ -67,22 +76,37 @@ input.btn.btn-block.btn-primary.btn-default{
 
 #ok-btn{
     margin-top: 40px;
+    text-align: center;
 }
 
-.form-inline{
+.inputForm{
+    margin: 0px auto 0px;
     alignment: center;
+    max-width: 500px;
 }
 
-#claim-new{
+.detailsForm{
+    margin: 0px auto 0px;
+    alignment: center;
+    max-width: 800px;
+}
+
+.input-group{
+    margin: 0px auto 20px auto;
+}
+
+#sizing-addon1{
+    width: 150px;
+}
+#sizing-addon2{
+    width: 150px;
+}
+#sizing-addon3{
     width: 150px;
 }
 
-#claim-new-claim-btn{
-    float: right;
-}
-
 #input-controls{
-    margin-top: 65px;
+    margin: 65px auto 0px auto;
 }
 
 #input-filter-textbox{

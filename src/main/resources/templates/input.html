@@ -3,11 +3,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/custom.css" th:href="@{/css/custom.css}" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"
+          media="screen"/>
     <title>Doc Seq Gen</title>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top" >
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
@@ -19,40 +20,45 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="nav_btn"><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
-                <li class="nav_btn"><form th:action="@{/logout}" method="post">
-                    <input class="btn btn-block btn-primary btn-default" type="submit" value="Logout"/></form></li>
+                <li class="nav_btn">
+                    <form th:action="@{/logout}" method="post">
+                        <input class="btn btn-block btn-primary btn-default" type="submit" value="Logout"/></form>
+                </li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="container">
-    <div class="main-title">Claim new Sequence</div>
+    <div class="main-title-claim">Claim new Sequence</div>
     <div id="top-row" class="row">
         <div class="alert alert-danger" th:if="${param.error}">
             Invalid username and password.
         </div>
     </div>
-    <form class="form-inline" th:action="@{/input}" th:object="${sequence}" method="post">
-        <div class="row">
-        <div class="col-md-6 ">
-            <ul id="details-labels" class="pull-right">
-                <li><div>Sequence is</div></li>
-                <li><div>By user</div></li>
-                <li><div>Purpose</div></li>
-            </ul>
+    <form class="inputForm" th:action="@{/input}" th:object="${sequence}" method="post">
+        <div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1"
+                       th:field="*{formattedsequence}" name="sequence" readonly="readonly"/>
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon2">By user</span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"
+                       th:field="*{author}" name="author" readonly="readonly"/>
+            </div>
+            <div class="input-group input-group-lg">
+                <span class="input-group-addon" id="sizing-addon3">Purpose</span>
+                <input type="text" class="form-control" placeholder="type here..." aria-describedby="sizing-addon3"
+                       th:field="*{purpose}" name="purpose"/>
+            </div>
         </div>
-        <div class="col-md-6">
-            <ul id="details-values" class="pull-left">
-                <li><input class="form-control" id="input-sequence-textbox" th:field="*{formattedsequence}" type="text" maxlength="30" name="sequence" readonly="readonly" /></li>
-                <li><input class="form-control" id="input-author-textbox" th:field="*{author}" type="text" maxlength="30" name="author" readonly="readonly" /></li>
-                <li><input class="form-control" id="input-purpose-textbox" th:field="*{purpose}" type="text" maxlength="30" name="purpose"/></li>
-            </ul>
-        </div>
-        </div>
-        <div id="input-controls" class="row">
-            <div class="col-md-6 pull-right"><a th:href="@{'/'}" id="claim-new-cancel-btn" class="btn btn-default" type="button" >Cancel</a></div>
-            <div class="col-md-6 pull-right"><input th:href="@{'/'}" id="claim-new-claim-btn" class="btn btn-default" type="submit" value="Claim!" /></div>
+        <div id="details-values">
+            <p id="input-controls">
+                <input th:href="@{'/'}" class="btn btn-primary btn-lg" role="button" type="submit" value="Claim!"></input>
+                <a th:href="@{'/'}" class="btn btn-warning" role="button">Cancel</a>
+            </p>
         </div>
     </form>
 </div>

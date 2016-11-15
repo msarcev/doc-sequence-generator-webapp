@@ -17,33 +17,40 @@
     <title>Sequence Generator</title>
 </head>
 <body>
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand">AG04</a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="nav_btn"><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
-                <li class="nav_btn">
-                    <form th:action="@{/logout}" method="post">
-                        <input class="btn btn-block btn-primary btn-default" type="submit" value="Logout"/></form>
-                </li>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
+                <li>
+                    <form class="navbar-form">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-primary" type="submit" value="Logout"/>
+                        </div>
+                    </form>  </li>
             </ul>
-        </div>
-    </div>
-</div>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 <div class="container">
     <div class="main-title">
         Documents Sequence Generator
     </div>
     <div id="top-row" class="row">
         <div class="col-md-6">
-            <a th:href="@{'/input'}" id="claim-new" class="btn btn-default" type="button">Claim new</a>
+            <a th:href="@{'/input'}" id="claim-new" class="btn btn-success btn-lg" type="button">Claim new</a>
         </div>
     </div>
     <div>
