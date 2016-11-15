@@ -18,36 +18,45 @@ public class HomeController {
 
     private static int currentPage = 1;
 
+    private final boolean serverSidePaging = false;
+
     @Autowired
     SequenceService sequenceService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView showHomePage(@RequestParam(value = "page", required = false) Integer pageNum,
-                                     @RequestParam(value = "filter", required = false) String filter) {
-
-        ModelAndView details = tryResolveFilter(filter);
-        if (details != null) return details;
+    public ModelAndView showHomePage(@RequestParam(value = "page", required = false) Integer pageNum) {
 
         ModelAndView modelAndView = new ModelAndView();
         int evalPage;
 
-        Page<Sequence> page = sequenceService.findAllPageable(new PageRequest(0,5));
 
-        if (pageNum != null && pageNum > page.getTotalPages()){
-            evalPage = currentPage - 1;
+        if (serverSidePaging) {
+
+            Page<Sequence> page = sequenceService.findAllPageable(new PageRequest(0, 5));
+
+            if (pageNum != null && pageNum > page.getTotalPages()) {
+                evalPage = currentPage - 1;
+            } else {
+                evalPage = (pageNum == null || pageNum < 1) ? currentPage - 1 : pageNum - 1;
+            }
+
+            page = sequenceService.findAllPageable(new PageRequest(evalPage, 5));
+            formatSequences(page.getContent());
+
+            currentPage = page.getNumber() + 1;
+            String pageInfo = "Page " + currentPage + "/" + page.getTotalPages();
+
+            modelAndView.addObject("entries", page.getContent());
+            modelAndView.addObject("pageinfo", pageInfo);
+            modelAndView.addObject("currentPage", page.getNumber() + 1);
+
         } else {
-            evalPage = (pageNum == null || pageNum < 1) ? currentPage - 1 : pageNum - 1;
+
+            List<Sequence> page = sequenceService.getAll();
+
+            modelAndView.addObject("entries", page);
         }
 
-        page = sequenceService.findAllPageable(new PageRequest(evalPage,5));
-        formatSequences(page.getContent());
-
-        currentPage = page.getNumber() + 1;
-        String pageInfo = "Page " + currentPage + "/" + page.getTotalPages();
-
-        modelAndView.addObject("entries", page.getContent());
-        modelAndView.addObject("pageinfo", pageInfo);
-        modelAndView.addObject("currentPage", page.getNumber() + 1);
         modelAndView.setViewName("home");
 
         return modelAndView;
@@ -58,21 +67,6 @@ public class HomeController {
         for (Sequence sequence : content){
             sequence.setFormattedsequence();
         }
-    }
-
-    private ModelAndView tryResolveFilter(@RequestParam(value = "filter", required = false) String filter) {
-        if (filter != null && filter.length() > 2){
-            Sequence seq = sequenceService.filterSequence(filter);
-            if (seq != null){
-                seq.setFormattedsequence();
-                ModelAndView modelAndView = new ModelAndView();
-                modelAndView.addObject("sequence", seq);
-                modelAndView.setViewName("details");
-
-                return modelAndView;
-            }
-        }
-        return null;
     }
 
     @RequestMapping(value = "/greet")

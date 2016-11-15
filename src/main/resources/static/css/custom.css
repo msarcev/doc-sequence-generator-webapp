@@ -1,7 +1,7 @@
 html, body {
-    height: 100%;
     width: 100%;
-    background-color: black;
+    height: 100vh;
+    background-color: white;
     font-size: 15pt;
 }
 
@@ -15,9 +15,17 @@ ul{
 
 .main-title{
     font-size:50px;
-    margin: 180px 0px 90px;
+    margin: 80px 0px 40px;
     letter-spacing: 2px;
     text-align: center;
+}
+
+#mainDataTable{
+    margin-bottom: 60px;
+}
+
+#mainDataTable_wrapper{
+    margin-bottom: 120px;
 }
 
 .input-sm{
@@ -91,10 +99,6 @@ input.btn.btn-block.btn-primary.btn-default{
 
 #top-row{
     margin-bottom: 40px;
-}
-
-.pagination{
-    float: right;
 }
 
 #page-info{
