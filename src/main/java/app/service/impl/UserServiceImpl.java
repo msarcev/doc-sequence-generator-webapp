@@ -1,7 +1,7 @@
 package app.service.impl;
 
-import app.dao.UserDao;
 import app.model.User;
+import app.dao.repository.UserRepository;
 import app.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,18 +12,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements UserService {
  
     @Autowired
-    private UserDao dao;
+    private UserRepository userRepository;
  
     public User findById(int id) {
-        return dao.findById(id);
+        return userRepository.findOne(id);
     }
  
     public User findBySso(String sso) {
-        return dao.findBySSO(sso);
+        return userRepository.findBySsoId(sso);
     }
 
     public void saveUser(User user){
-        dao.saveUser(user);
+        userRepository.save(user);
     }
  
 }

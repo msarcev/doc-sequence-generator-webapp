@@ -1,8 +1,9 @@
 package app.service.impl;
 
 import app.model.Sequence;
-import app.repository.SequenceRepository;
+import app.dao.repository.SequenceRepository;
 import app.service.SequenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,10 @@ import java.util.List;
 @Transactional
 public class SequenceServiceImpl implements SequenceService{
 
+
     private SequenceRepository sequenceRepository;
 
+    @Autowired
     public SequenceServiceImpl(SequenceRepository sequenceRepository){
         this.sequenceRepository = sequenceRepository;
     }
