@@ -18,7 +18,7 @@ public class InputController {
     @Autowired
     SequenceService sequenceService;
 
-    @PostMapping("/input")
+    @RequestMapping(value = "/input", method = RequestMethod.POST)
     public ModelAndView claimNewSequence(@ModelAttribute Sequence sequence) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");

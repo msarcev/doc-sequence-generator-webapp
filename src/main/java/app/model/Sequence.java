@@ -19,6 +19,7 @@ public class Sequence {
     @Column(name = "DATE", unique = false, nullable = false)
     private String dateTime;
 
+    @Column(name = "FORMATTED_SEQ", unique = false, nullable = true)
     private String formattedsequence;
 
     public Sequence(){}
