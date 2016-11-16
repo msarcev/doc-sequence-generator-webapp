@@ -21,7 +21,7 @@ ul{
     text-align: center;
 }
 
-.main-title-claim{
+.main-title-details{
     font-size:50px;
     margin: 190px 0px 40px;
     letter-spacing: 2px;
@@ -88,11 +88,15 @@ input.btn.btn-block.btn-primary.btn-default{
 .detailsForm{
     margin: 0px auto 0px;
     alignment: center;
-    max-width: 800px;
+    max-width: 500px;
 }
 
 .input-group{
     margin: 0px auto 20px auto;
+}
+
+.details-input-group{
+    width: 100%;
 }
 
 #sizing-addon1{

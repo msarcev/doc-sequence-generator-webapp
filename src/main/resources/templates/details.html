@@ -27,26 +27,26 @@
     </div>
 
     <div class="container">
-        <div class="main-title">Document Details</div>
+        <div class="main-title-details">Document Details</div>
             <div class="detailsForm">
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg details-input-group">
                     <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
-                    <a type="text" class="form-control" aria-describedby="sizing-addon1"
-                       th:text="${sequence.formattedsequence}" name="sequence" readonly="readonly"/>
+                    <label type="text" class="form-control" aria-describedby="sizing-addon1"
+                       th:text="${sequence.formattedsequence}" name="sequence" />
                 </div>
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg details-input-group">
                     <span class="input-group-addon" id="sizing-addon2">By user</span>
-                    <a type="text" class="form-control" aria-describedby="sizing-addon2"
-                       th:text="${sequence.author}" name="author" readonly="readonly"/>
+                    <label type="text" class="form-control" aria-describedby="sizing-addon2"
+                       th:text="${sequence.author}" name="author" />
                 </div>
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg details-input-group">
                     <span class="input-group-addon" id="sizing-addon3">Purpose</span>
-                    <a type="text" class="form-control" aria-describedby="sizing-addon3"
+                    <label type="text" class="form-control" aria-describedby="sizing-addon3"
                        th:text="${sequence.purpose}" name="purpose"/>
                 </div>
-                <div class="input-group input-group-lg">
+                <div class="input-group input-group-lg details-input-group">
                     <span class="input-group-addon" id="sizing-addon4">Date and Time</span>
-                    <a type="text" class="form-control" aria-describedby="sizing-addon4"
+                    <label type="text" class="form-control" aria-describedby="sizing-addon4"
                        th:text="${sequence.dateTime}" name="dateTime"/>
                 </div>
             </div>
