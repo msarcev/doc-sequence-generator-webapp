@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
 
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="20161116000000-1" author="msarcevic">
 
-    <changeSet id="20161115000000-0" author="msarcevic">
-        <createTable tableName="APP_USER">
-            <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="APP_USER_PK"/>
-            </column>
-            <column name="SSO_ID" type="VARCHAR(30)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="PASSWORD" type="VARCHAR(150)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="FIRST_NAME" type="VARCHAR(30)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="LAST_NAME" type="VARCHAR(30)">
-                <constraints nullable="true"/>
-            </column>
-            <column name="EMAIL" type="VARCHAR(30)">
-                <constraints nullable="true"/>
-            </column>
-        </createTable>
+        <insert tableName="APP_USER">
+            <column name="SSO_ID" value="user1"/>
+            <column name="PASSWORD" value="password"/>
+            <column name="FIRST_NAME" value="Ante"/>
+            <column name="LAST_NAME" value="Antic"/>
+        </insert>
+
+        <insert tableName="APP_USER">
+            <column name="SSO_ID" value="user2"/>
+            <column name="PASSWORD" value="password"/>
+            <column name="FIRST_NAME" value="Mate"/>
+            <column name="LAST_NAME" value="Matic"/>
+        </insert>
+
+        <insert tableName="APP_USER">
+            <column name="SSO_ID" value="user3"/>
+            <column name="PASSWORD" value="password"/>
+            <column name="FIRST_NAME" value="Pero"/>
+            <column name="LAST_NAME" value="Peric"/>
+        </insert>
+
     </changeSet>
 
 </databaseChangeLog>

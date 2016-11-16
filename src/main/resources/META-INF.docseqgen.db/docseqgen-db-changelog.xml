@@ -8,8 +8,10 @@
 
     <property name="current.timestamp" value="now()" dbms="postgresql" />
 
+    <include file="/META-INF.docseqgen.db/changelogs/docseqgen-columns-000100-users.xml"/>
+    <include file="/META-INF.docseqgen.db/changelogs/docseqgen-columns-000200-sequences.xml"/>
     <include file="/META-INF.docseqgen.db/changelogs/docseqgen-data-000100-users.xml"/>
-    <include file="/META-INF.docseqgen.db/changelogs/docseqgen-data-000200-sequences.xml"/>
+    <include file="/META-INF.docseqgen.db/changelogs/docseqgen-data-000200-sequences.sql"/>
 
 </databaseChangeLog>
 

@@ -6,21 +6,24 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="20161115000000-0" author="msarcevic">
-        <createTable tableName="SEQUENCE">
+    <changeSet id="20161115000000-1" author="msarcevic">
+        <createTable tableName="APP_USER">
             <column name="id" type="BIGINT" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="SEQUENCE_PK"/>
+                <constraints nullable="false" primaryKey="true" primaryKeyName="APP_USER_PK"/>
             </column>
-            <column name="AUTHOR" type="VARCHAR(30)">
+            <column name="SSO_ID" type="VARCHAR(30)">
                 <constraints nullable="false"/>
             </column>
-            <column name="PURPOSE" type="VARCHAR(30)">
+            <column name="PASSWORD" type="VARCHAR(150)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(30)">
                 <constraints nullable="true"/>
             </column>
-            <column name="DATE" type="VARCHAR(30)">
-                <constraints nullable="false"/>
+            <column name="LAST_NAME" type="VARCHAR(30)">
+                <constraints nullable="true"/>
             </column>
-            <column name="FORMATTED_SEQ" type="VARCHAR(30)">
+            <column name="EMAIL" type="VARCHAR(30)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
