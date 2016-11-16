@@ -41,7 +41,12 @@ public class InputController {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         Sequence sequence = new Sequence(auth.getName(),null,null);
-        sequence.setId(sequenceService.getLastSequence().getId()+1);
+        Sequence last = sequenceService.getLastSequence();
+        if (last != null){
+            sequence.setId(sequenceService.getLastSequence().getId()+1);
+        } else {
+            sequence.setId(1);
+        }
         sequence.setFormattedsequence();
         modelAndView.addObject("sequence", sequence);
         modelAndView.setViewName("input");

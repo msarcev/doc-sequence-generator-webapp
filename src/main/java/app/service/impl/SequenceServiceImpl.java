@@ -44,7 +44,11 @@ public class SequenceServiceImpl implements SequenceService{
     @Override
     public Sequence getLastSequence() {
         List<Sequence> list = getAll();
-        return list.get(list.size()-1);
+        if (list.size() > 0){
+            return list.get(list.size()-1);
+        } else {
+            return null;
+        }
     }
 
     @Override
