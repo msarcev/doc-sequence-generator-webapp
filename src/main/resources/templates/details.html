@@ -3,57 +3,69 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../static/css/custom.css" th:href="@{/css/custom.css}" rel="stylesheet" type="text/css" media="screen"/>
-    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"
+          media="screen"/>
     <title>Doc Seq Gen</title>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top" >
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="nav_btn"><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
-                    <li class="nav_btn"><form th:action="@{/logout}" method="post">
-                        <input class="btn btn-block btn-primary btn-default" type="submit" value="Logout"/></form></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="main-title-details">Document Details</div>
-            <div class="detailsForm">
-                <div class="input-group input-group-lg details-input-group">
-                    <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
-                    <label type="text" class="form-control" aria-describedby="sizing-addon1"
-                       th:text="${sequence.formattedsequence}" name="sequence" />
-                </div>
-                <div class="input-group input-group-lg details-input-group">
-                    <span class="input-group-addon" id="sizing-addon2">By user</span>
-                    <label type="text" class="form-control" aria-describedby="sizing-addon2"
-                       th:text="${sequence.author}" name="author" />
-                </div>
-                <div class="input-group input-group-lg details-input-group">
-                    <span class="input-group-addon" id="sizing-addon3">Purpose</span>
-                    <label type="text" class="form-control" aria-describedby="sizing-addon3"
-                       th:text="${sequence.purpose}" name="purpose"/>
-                </div>
-                <div class="input-group input-group-lg details-input-group">
-                    <span class="input-group-addon" id="sizing-addon4">Date and Time</span>
-                    <label type="text" class="form-control" aria-describedby="sizing-addon4"
-                       th:text="${sequence.dateTime}" name="dateTime"/>
-                </div>
-            </div>
-        <div id="ok-btn">
-            <a th:href="@{'/'}" id="claim-new" class="btn btn-success btn-lg" type="button" >Ok</a>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">AG04</a>
         </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><h3 th:inline="text">Welcome, [[${#httpServletRequest.remoteUser}]]</h3></li>
+                <li>
+                    <form class="navbar-form" th:action="@{/logout}" method="post">
+                        <div class="form-group">
+                            <input class="btn btn-block btn-primary" type="submit" value="Logout"/>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="main-title-details">Document Details</div>
+    <div class="detailsForm">
+        <div class="input-group input-group-lg details-input-group">
+            <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
+            <label type="text" class="form-control" aria-describedby="sizing-addon1"
+                   th:text="${sequence.formattedsequence}" name="sequence"/>
+        </div>
+        <div class="input-group input-group-lg details-input-group">
+            <span class="input-group-addon" id="sizing-addon2">By user</span>
+            <label type="text" class="form-control" aria-describedby="sizing-addon2"
+                   th:text="${sequence.author}" name="author"/>
+        </div>
+        <div class="input-group input-group-lg details-input-group">
+            <span class="input-group-addon" id="sizing-addon3">Purpose</span>
+            <label type="text" class="form-control" aria-describedby="sizing-addon3"
+                   th:text="${sequence.purpose}" name="purpose"/>
+        </div>
+        <div class="input-group input-group-lg details-input-group">
+            <span class="input-group-addon" id="sizing-addon4">Date and Time</span>
+            <label type="text" class="form-control" aria-describedby="sizing-addon4"
+                   th:text="${sequence.dateTime}" name="dateTime"/>
+        </div>
     </div>
+    <div id="ok-btn">
+        <a th:href="@{'/'}" id="claim-new" class="btn btn-success btn-lg" type="button">Ok</a>
+    </div>
+
+</div>
 </body>
 </html>

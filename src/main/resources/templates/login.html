@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="main-title">
+    <div class="main-title-login">
         Documents Sequence Generator
     </div>
     <div class="alert alert-danger" th:if="${param.error}">
@@ -18,14 +18,18 @@
         You have been logged out.
     </div>
     <form class="form-horizontal" th:action="@{/login}" method="post">
-        <div class="input-group input-sm">
-            <label class="input-group-addon">Username</label><input class="form-control" type="text" name="username"/>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon1">un</span>
+            <input type="text" class="form-control" placeholder="your username" aria-describedby="sizing-addon1"
+                   name="username"/>
         </div>
-        <div class="input-group input-sm">
-            <label class="input-group-addon">Password</label><input class="form-control" type="password" name="password"/>
+        <div class="input-group input-group-lg">
+            <span class="input-group-addon" id="sizing-addon2">pw</span>
+            <input type="password" class="form-control" placeholder="you password" aria-describedby="sizing-addon2"
+                   name="password"/>
         </div>
-        <div class="form-actions">
-            <input class="btn btn-block btn-primary btn-default" type="submit" value="Login"/>
+        <div id="ok-btn">
+            <input class="btn btn-primary btn-lg" type="submit" value="Login"/>
         </div>
     </form>
 </div>
