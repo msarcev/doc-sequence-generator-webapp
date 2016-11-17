@@ -2,6 +2,7 @@ package app.service.impl;
 
 import app.model.Sequence;
 import app.dao.repository.SequenceRepository;
+import app.mybatis.mappers.SequencesMapper;
 import app.service.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,9 @@ public class SequenceServiceImpl implements SequenceService{
 
 
     private SequenceRepository sequenceRepository;
+
+    @Autowired
+    private SequencesMapper sequencesMapper;
 
     @Autowired
     public SequenceServiceImpl(SequenceRepository sequenceRepository){
@@ -38,7 +42,7 @@ public class SequenceServiceImpl implements SequenceService{
 
     @Override
     public Sequence findById(int id) {
-        return sequenceRepository.findOne(id);
+        return sequencesMapper.findOne(id);
     }
 
     @Override
@@ -52,25 +56,9 @@ public class SequenceServiceImpl implements SequenceService{
     }
 
     @Override
-    public Sequence filterSequence(String filter) {
-
-        List<Sequence> all = getAll();
-
-        Sequence toReturn = null;
-
-        for (Sequence sequence : all){
-            if(sequence.getPurpose().contains(filter)){
-                toReturn = sequence;
-            }
-        }
-
-        return toReturn;
-    }
-
-    @Override
     public List<Sequence> getAll(){
 
-        Iterable<Sequence> allSequences = sequenceRepository.findAll();
+        Iterable<Sequence> allSequences = sequencesMapper.findAll();
         List<Sequence> list = new LinkedList<>();
 
         for (Sequence sequence : allSequences){

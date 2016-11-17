@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
  
     public User findBySso(String sso) {
-        return userMapper.getUserBySsoId(sso);
+        return userMapper.findBySsoId(sso);
     }
 
     public void saveUser(User user){

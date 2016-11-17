@@ -1,5 +1,6 @@
 package app.conf;
 
+import app.mybatis.mappers.SequencesMapper;
 import app.mybatis.mappers.UserMapper;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -37,6 +38,7 @@ public class MyBatisConfig {
 
         SqlSessionFactory sessionFactory = sessionFactoryBean.getObject();
         sessionFactory.getConfiguration().addMapper(UserMapper.class);
+        sessionFactory.getConfiguration().addMapper(SequencesMapper.class);
 
         return sessionFactory;
     }
@@ -47,5 +49,12 @@ public class MyBatisConfig {
 
         return sessionTemplate.getMapper(UserMapper.class);
 
+    }
+
+    @Bean
+    public SequencesMapper sequencesMapper() throws Exception {
+        SqlSessionTemplate sessionTemplate = new SqlSessionTemplate(sqlSessionFactory());
+
+        return sessionTemplate.getMapper(SequencesMapper.class);
     }
 }

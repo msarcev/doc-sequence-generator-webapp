@@ -16,7 +16,5 @@ public interface SequenceService {
 
     Sequence getLastSequence();
 
-    Sequence filterSequence(String filter);
-
     List<Sequence> getAll();
 }
