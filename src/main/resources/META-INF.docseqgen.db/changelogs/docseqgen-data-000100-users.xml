@@ -7,21 +7,21 @@
 
         <insert tableName="APP_USER">
             <column name="SSO_ID" value="user1"/>
-            <column name="PASSWORD" value="password"/>
+            <column name="PASSWORD" value="$2a$06$PUtehsuBNaCRG7BfTrQ66.RwXmJrWaOuUK5FpaM7GFiXrJDCQLTRe"/>
             <column name="FIRST_NAME" value="Ante"/>
             <column name="LAST_NAME" value="Antic"/>
         </insert>
 
         <insert tableName="APP_USER">
             <column name="SSO_ID" value="user2"/>
-            <column name="PASSWORD" value="password"/>
+            <column name="PASSWORD" value="$2a$06$l1x9fSkiAwB8/oGvd5OuSen5cNI8yByHlGf8TgFqUGZAe/xCvc6qO"/>
             <column name="FIRST_NAME" value="Mate"/>
             <column name="LAST_NAME" value="Matic"/>
         </insert>
 
         <insert tableName="APP_USER">
             <column name="SSO_ID" value="user3"/>
-            <column name="PASSWORD" value="password"/>
+            <column name="PASSWORD" value="$2a$06$e8DedJDO05NcETwcT/fssOxYZOHQJ5OJ2XSkHQgTCxDUf96WUcQSu"/>
             <column name="FIRST_NAME" value="Pero"/>
             <column name="LAST_NAME" value="Peric"/>
         </insert>
