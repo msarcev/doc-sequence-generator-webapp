@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="20161121000000-1" author="msarcevic">
+
+        <insert tableName="APP_USER_USER_PROFILE">
+            <column name="USER_ID" value="1"/>
+            <column name="USER_PROFILE_ID" value="2"/>
+        </insert>
+
+        <insert tableName="APP_USER_USER_PROFILE">
+            <column name="USER_ID" value="2"/>
+            <column name="USER_PROFILE_ID" value="2"/>
+        </insert>
+
+        <insert tableName="APP_USER_USER_PROFILE">
+            <column name="USER_ID" value="3"/>
+            <column name="USER_PROFILE_ID" value="2"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>

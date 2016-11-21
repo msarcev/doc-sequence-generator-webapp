@@ -27,10 +27,10 @@ public class User {
     @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "APP_USER_USER_PROFILE",
-            joinColumns = {@JoinColumn(name = "USER_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID")})
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "USER_PROFILE_ID", referencedColumnName = "id")})
     private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
     public User(){}
