@@ -41,20 +41,18 @@
 <div class="container">
     <div class="main-title-details">Claim new Sequence</div>
     <div id="top-row" class="row">
-        <div class="alert alert-danger" th:if="${param.error}">
-            Invalid username and password.
-        </div>
+        <div class="alert alert-danger" th:errors="${sequence.*}" />
     </div>
     <form class="inputForm" th:action="@{/input}" th:object="${sequence}" method="post">
         <div>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
-                <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon1"
+                <input type="text" class="form-control" aria-describedby="sizing-addon1"
                        th:field="*{formattedsequence}" name="sequence" readonly="readonly"/>
             </div>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon2">By user</span>
-                <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"
+                <input type="text" class="form-control" aria-describedby="sizing-addon2"
                        th:field="*{author}" name="author" readonly="readonly"/>
             </div>
             <div class="input-group input-group-lg">

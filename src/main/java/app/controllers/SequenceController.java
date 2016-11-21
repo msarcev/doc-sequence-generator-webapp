@@ -2,12 +2,16 @@ package app.controllers;
 
 import app.model.Sequence;
 import app.service.SequenceService;
+import app.validators.SequenceFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
@@ -17,6 +21,9 @@ public class SequenceController {
 
     @Autowired
     SequenceService sequenceService;
+
+    @Autowired
+    SequenceFormValidator sequenceFormValidator;
 
     @RequestMapping(value = "/input", method = RequestMethod.GET)
     public ModelAndView input() {
@@ -39,16 +46,23 @@ public class SequenceController {
     }
 
     @RequestMapping(value = "/input", method = RequestMethod.POST)
-    public ModelAndView claimNewSequence(@ModelAttribute Sequence sequence) {
+    public ModelAndView claimNewSequence(@Valid @ModelAttribute Sequence sequence, BindingResult bindingResult) {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         String date = sdf.format(new Date().getTime());
         sequence.setDateTime(date);
 
-        if (!sequence.getPurpose().equals("        ")) {
-            sequenceService.saveSequences(Arrays.asList(sequence));
-        }
+
         ModelAndView modelAndView = new ModelAndView("redirect:/");
+
+        if (bindingResult.hasErrors()){
+            modelAndView = new ModelAndView();
+            modelAndView.addObject(sequence);
+            modelAndView.setViewName("input");
+            return modelAndView;
+        }
+
+        sequenceService.saveSequences(Arrays.asList(sequence));
 
         return modelAndView;
 
@@ -66,6 +80,11 @@ public class SequenceController {
 
         return modelAndView;
 
+    }
+
+    @InitBinder("sequence")
+    private void initSequenceFormValidator(WebDataBinder binder){
+        binder.setValidator(sequenceFormValidator);
     }
 
 }
