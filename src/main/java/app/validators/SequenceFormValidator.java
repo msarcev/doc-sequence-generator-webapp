@@ -21,7 +21,11 @@ public class SequenceFormValidator implements Validator {
     public void validate(Object object, Errors errors) {
         Sequence sequence = (Sequence) object;
 
-        if (!StringUtils.hasText(((Sequence) object).getPurpose())){
+        if (!StringUtils.hasText(sequence.getAuthor())){
+            errors.rejectValue("author", "sequence.author.empty", "Field \"Author\" cannot be empty!");
+        }
+
+        if (!StringUtils.hasText(sequence.getPurpose())){
             errors.rejectValue("purpose", "sequence.purpose.empty", "Field \"Purpose\" cannot be empty!");
         }
     }
