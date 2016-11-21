@@ -44,7 +44,7 @@
         <div class="input-group input-group-lg details-input-group">
             <span class="input-group-addon" id="sizing-addon1">Sequence is</span>
             <label type="text" class="form-control" aria-describedby="sizing-addon1"
-                   th:text="${sequence.formattedsequence}" name="sequence"/>
+                   th:text="${#numbers.formatInteger((sequence.id),5)}" name="sequence"/>
         </div>
         <div class="input-group input-group-lg details-input-group">
             <span class="input-group-addon" id="sizing-addon2">By user</span>

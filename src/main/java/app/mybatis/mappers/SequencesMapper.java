@@ -18,8 +18,7 @@ public interface SequencesMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "author", column = "author"),
             @Result(property = "purpose", column = "purpose"),
-            @Result(property = "dateTime", column = "date"),
-            @Result(property = "formattedsequence", column = "formatted_seq"),
+            @Result(property = "dateTime", column = "date")
     })
     List<Sequence> findAll();
 
@@ -28,8 +27,7 @@ public interface SequencesMapper {
             @Result(property = "id", column = "id"),
             @Result(property = "author", column = "author"),
             @Result(property = "purpose", column = "purpose"),
-            @Result(property = "dateTime", column = "date"),
-            @Result(property = "formattedsequence", column = "formatted_seq"),
+            @Result(property = "dateTime", column = "date")
     })
     Sequence findOne(@Param("sequenceId") int sequenceId);
 

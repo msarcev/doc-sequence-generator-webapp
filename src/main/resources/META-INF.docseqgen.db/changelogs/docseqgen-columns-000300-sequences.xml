@@ -20,9 +20,6 @@
             <column name="DATE" type="VARCHAR(30)">
                 <constraints nullable="false"/>
             </column>
-            <column name="FORMATTED_SEQ" type="VARCHAR(30)">
-                <constraints nullable="true"/>
-            </column>
         </createTable>
     </changeSet>
 

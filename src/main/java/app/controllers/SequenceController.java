@@ -38,7 +38,6 @@ public class SequenceController {
         } else {
             sequence.setId(1);
         }
-        sequence.setFormattedsequence();
         modelAndView.addObject("sequence", sequence);
         modelAndView.setViewName("input");
 
@@ -52,8 +51,7 @@ public class SequenceController {
         String date = sdf.format(new Date().getTime());
         sequence.setDateTime(date);
 
-
-        ModelAndView modelAndView = new ModelAndView("redirect:/");
+        ModelAndView modelAndView = new ModelAndView();
 
         if (bindingResult.hasErrors()){
             modelAndView = new ModelAndView();
@@ -62,6 +60,7 @@ public class SequenceController {
             return modelAndView;
         }
 
+        modelAndView.setViewName("redirect:/");
         sequenceService.saveSequences(Arrays.asList(sequence));
 
         return modelAndView;
@@ -72,7 +71,6 @@ public class SequenceController {
     public ModelAndView details(@RequestParam(value = "id", required = true) Integer id) {
 
         Sequence seq = sequenceService.findById(id);
-        seq.setFormattedsequence();
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("sequence", seq);

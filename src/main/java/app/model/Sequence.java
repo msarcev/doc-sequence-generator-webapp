@@ -19,9 +19,6 @@ public class Sequence {
     @Column(name = "DATE", unique = false, nullable = false)
     private String dateTime;
 
-    @Column(name = "FORMATTED_SEQ", unique = false, nullable = true)
-    private String formattedsequence;
-
     public Sequence(){}
 
     public Sequence(String author, String purpose, String dateTime){
@@ -36,17 +33,6 @@ public class Sequence {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getFormattedsequence() {
-        return formattedsequence;
-    }
-
-    public void setFormattedsequence() {
-
-        String formattedNumber = String.format("%05d", getId());
-
-        this.formattedsequence = formattedNumber;
     }
 
     public String getAuthor() {

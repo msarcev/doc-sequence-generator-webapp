@@ -74,7 +74,7 @@
             </tfoot>
             <tbody>
             <tr th:each="entry : ${entries}">
-                <td><a th:text="${entry.formattedsequence}" th:href="@{/details(id=${entry.id})}"></a></td>
+                <td><a th:text="${#numbers.formatInteger((entry.id),5)}" th:href="@{/details(id=${entry.id})}"></a></td>
                 <td th:text="${entry.author}"></td>
                 <td th:text="${entry.purpose}"></td>
                 <td th:text="${entry.dateTime}"></td>

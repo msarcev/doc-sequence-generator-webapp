@@ -41,7 +41,6 @@ public class HomeController {
             }
 
             page = sequenceService.findAllPageable(new PageRequest(evalPage, 5));
-            formatSequences(page.getContent());
 
             currentPage = page.getNumber() + 1;
             String pageInfo = "Page " + currentPage + "/" + page.getTotalPages();
@@ -61,12 +60,6 @@ public class HomeController {
 
         return modelAndView;
 
-    }
-
-    private void formatSequences(List<Sequence> content) {
-        for (Sequence sequence : content){
-            sequence.setFormattedsequence();
-        }
     }
 
 }

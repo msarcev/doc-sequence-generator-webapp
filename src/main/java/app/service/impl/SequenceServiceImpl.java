@@ -62,7 +62,6 @@ public class SequenceServiceImpl implements SequenceService{
         List<Sequence> list = new LinkedList<>();
 
         for (Sequence sequence : allSequences){
-            sequence.setFormattedsequence();
             list.add(sequence);
         }
 
