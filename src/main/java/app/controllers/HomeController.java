@@ -69,11 +69,4 @@ public class HomeController {
         }
     }
 
-    @RequestMapping(value = "/greet")
-    public String index() {
-
-        return "Greetings from Spring Boot!";
-
-    }
-
 }
