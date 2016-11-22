@@ -17,7 +17,7 @@
             <column name="PURPOSE" type="VARCHAR(30)">
                 <constraints nullable="true"/>
             </column>
-            <column name="DATE" type="VARCHAR(30)">
+            <column name="DATE" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
         </createTable>

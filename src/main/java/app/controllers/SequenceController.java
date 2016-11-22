@@ -4,6 +4,7 @@ import app.model.Sequence;
 import app.service.SequenceService;
 import app.validators.SequenceFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import java.text.SimpleDateFormat;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
 
@@ -30,14 +31,7 @@ public class SequenceController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Sequence sequence = new Sequence(auth.getName(),null,null);
-        Sequence last = sequenceService.getLastSequence();
-        if (last != null){
-            sequence.setId(sequenceService.getLastSequence().getId()+1);
-        } else {
-            sequence.setId(1);
-        }
+        Sequence sequence = generateNewSequence();
         modelAndView.addObject("sequence", sequence);
         modelAndView.setViewName("input");
 
@@ -47,21 +41,31 @@ public class SequenceController {
     @RequestMapping(value = "/input", method = RequestMethod.POST)
     public ModelAndView claimNewSequence(@Valid @ModelAttribute Sequence sequence, BindingResult bindingResult) {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        String date = sdf.format(new Date().getTime());
-        sequence.setDateTime(date);
-
         ModelAndView modelAndView = new ModelAndView();
 
+        Timestamp stamp = new Timestamp(new Date().getTime());
+        sequence.setDateTime(stamp);
+
         if (bindingResult.hasErrors()){
-            modelAndView = new ModelAndView();
-            modelAndView.addObject(sequence);
+            modelAndView.addObject("sequence", sequence);
             modelAndView.setViewName("input");
             return modelAndView;
         }
 
+        try {
+            sequenceService.saveSequences(Arrays.asList(sequence));
+
+        } catch (OptimisticLockingFailureException ex){
+
+            bindingResult.rejectValue("dateTime","concurrency.lock.fail","This sequence was taken. Assigning new...");
+            sequence.setId(sequence.getId()+1);
+            modelAndView.addObject(sequence);
+            modelAndView.setViewName("input");
+
+            return modelAndView;
+        }
+
         modelAndView.setViewName("redirect:/");
-        sequenceService.saveSequences(Arrays.asList(sequence));
 
         return modelAndView;
 
@@ -78,6 +82,18 @@ public class SequenceController {
 
         return modelAndView;
 
+    }
+
+    private Sequence generateNewSequence() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Sequence sequence = new Sequence(auth.getName(),null,null);
+        Sequence last = sequenceService.getLastSequence();
+        if (last != null){
+            sequence.setId(sequenceService.getLastSequence().getId()+1);
+        } else {
+            sequence.setId(1);
+        }
+        return sequence;
     }
 
     @InitBinder("sequence")

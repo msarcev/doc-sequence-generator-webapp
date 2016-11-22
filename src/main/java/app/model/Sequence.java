@@ -1,6 +1,7 @@
 package app.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "SEQUENCE")
@@ -16,12 +17,13 @@ public class Sequence {
     @Column(name = "PURPOSE", unique = false, nullable = false)
     private String purpose;
 
+    @Version
     @Column(name = "DATE", unique = false, nullable = false)
-    private String dateTime;
+    private Date dateTime;
 
     public Sequence(){}
 
-    public Sequence(String author, String purpose, String dateTime){
+    public Sequence(String author, String purpose, Date dateTime){
         this.author = author;
         this.purpose = purpose;
         this.dateTime = dateTime;
@@ -51,17 +53,18 @@ public class Sequence {
         this.purpose = purpose;
     }
 
-    public String getDateTime() {
+    public Date getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(String dateTime) {
+    public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
         return "Sequence [id=" + id + ", author=" + author + ", purpose=" + purpose + ", date=" + dateTime;    }
+
 
 
 }
