@@ -46,26 +46,18 @@ public class SequenceServiceImpl implements SequenceService{
     }
 
     @Override
-    public Sequence getLastSequence() {
-        List<Sequence> list = getAll();
-        if (list.size() > 0){
-            return list.get(list.size()-1);
-        } else {
-            return null;
-        }
+    public int getLastSequenceId() {
+        return sequencesMapper.getLast();
+    }
+
+    @Override
+    public int countSequences() {
+        return sequencesMapper.getElementsCount();
     }
 
     @Override
     public List<Sequence> getAll(){
-
-        Iterable<Sequence> allSequences = sequencesMapper.findAll();
-        List<Sequence> list = new LinkedList<>();
-
-        for (Sequence sequence : allSequences){
-            list.add(sequence);
-        }
-
-        return list;
+        return sequencesMapper.findAll();
     }
 
 }

@@ -46,7 +46,7 @@ public class SequenceController {
         Timestamp stamp = new Timestamp(new Date().getTime());
         sequence.setDateTime(stamp);
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             modelAndView.addObject("sequence", sequence);
             modelAndView.setViewName("input");
             return modelAndView;
@@ -55,10 +55,10 @@ public class SequenceController {
         try {
             sequenceService.saveSequences(Arrays.asList(sequence));
 
-        } catch (OptimisticLockingFailureException ex){
+        } catch (OptimisticLockingFailureException ex) {
 
-            bindingResult.rejectValue("dateTime","concurrency.lock.fail","This sequence was taken. Assigning new...");
-            sequence.setId(sequence.getId()+1);
+            bindingResult.rejectValue("dateTime", "concurrency.lock.fail", "This sequence was taken. Assigning new...");
+            sequence.setId(sequence.getId() + 1);
             modelAndView.addObject(sequence);
             modelAndView.setViewName("input");
 
@@ -85,19 +85,24 @@ public class SequenceController {
     }
 
     private Sequence generateNewSequence() {
+
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Sequence sequence = new Sequence(auth.getName(),null,null);
-        Sequence last = sequenceService.getLastSequence();
-        if (last != null){
-            sequence.setId(sequenceService.getLastSequence().getId()+1);
+        Sequence sequence = new Sequence(auth.getName(), null, null);
+
+        int count = sequenceService.countSequences();
+        int last = sequenceService.getLastSequenceId();
+
+        if (count == 0) {
+            sequence.setId(last);
         } else {
-            sequence.setId(1);
+            sequence.setId(++last);
         }
+
         return sequence;
     }
 
     @InitBinder("sequence")
-    private void initSequenceFormValidator(WebDataBinder binder){
+    private void initSequenceFormValidator(WebDataBinder binder) {
         binder.setValidator(sequenceFormValidator);
     }
 

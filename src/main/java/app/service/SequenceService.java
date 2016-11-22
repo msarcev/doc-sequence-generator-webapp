@@ -14,7 +14,9 @@ public interface SequenceService {
 
     Sequence findById(int id);
 
-    Sequence getLastSequence();
+    int getLastSequenceId();
+
+    int countSequences();
 
     List<Sequence> getAll();
 }

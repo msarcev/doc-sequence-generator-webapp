@@ -31,5 +31,11 @@ public interface SequencesMapper {
     })
     Sequence findOne(@Param("sequenceId") int sequenceId);
 
+    @Select("SELECT last_value FROM sequence_id_seq")
+    int getLast();
+
+    @Select("SELECT COUNT(*) FROM sequence")
+    int getElementsCount();
+
     Iterable<Sequence> save(Iterable<Sequence> persons);
 }
