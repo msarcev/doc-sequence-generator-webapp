@@ -132,12 +132,16 @@ input.btn.btn-block.btn-primary.btn-default{
     height: 100%;
 }
 
-#top-row{
+#top-row-login{
     margin-bottom: 40px;
     max-width: 450px;
     text-align: center;
     margin-right: auto;
     margin-left: auto;
+}
+
+#top-row{
+    margin-bottom: 40px;
 }
 
 #page-info{

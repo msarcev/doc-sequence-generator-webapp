@@ -5,8 +5,6 @@ import app.service.SequenceService;
 import app.validators.SequenceFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.OptimisticLockingFailureException;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +29,7 @@ public class SequenceController {
 
         ModelAndView modelAndView = new ModelAndView();
 
-        Sequence sequence = generateNewSequence();
+        Sequence sequence = sequenceService.generateNewSequence();
         modelAndView.addObject("sequence", sequence);
         modelAndView.setViewName("input");
 
@@ -82,23 +80,6 @@ public class SequenceController {
 
         return modelAndView;
 
-    }
-
-    private Sequence generateNewSequence() {
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Sequence sequence = new Sequence(auth.getName(), null, null);
-
-        int count = sequenceService.countSequences();
-        int last = sequenceService.getLastSequenceId();
-
-        if (count == 0) {
-            sequence.setId(last);
-        } else {
-            sequence.setId(++last);
-        }
-
-        return sequence;
     }
 
     @InitBinder("sequence")

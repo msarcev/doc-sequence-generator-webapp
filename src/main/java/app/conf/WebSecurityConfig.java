@@ -1,6 +1,5 @@
 package app.conf;
 
-import app.service.impl.PassEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @ComponentScan(basePackages = "app")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-
-	@Autowired
-	PassEncoder passwordEncoder;
 
 	@Autowired
 	@Qualifier("customUserDetailsService")
@@ -41,12 +37,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		passwordEncoder = new PassEncoder();
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+		auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
 		auth
 				.inMemoryAuthentication()
 				.withUser("admin").password("admin").roles("ADMIN");
 
+	}
+
+	private static PasswordEncoder encoder(){
+		return new BCryptPasswordEncoder();
 	}
 
 }
